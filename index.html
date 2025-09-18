@@ -1,664 +1,1003 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vens - Crypto Signals & Trading Alerts</title>
-    <meta name="description" content="Get real-time crypto signals and instant alerts for profitable trading decisions.">
-    <meta name="keywords" content="crypto signals, cryptocurrency, trading alerts, bitcoin signals, altcoin signals">
-    
+    <meta
+      name="description"
+      content="Get real-time crypto signals and instant alerts for profitable trading decisions."
+    />
+    <meta
+      name="keywords"
+      content="crypto signals, cryptocurrency, trading alerts, bitcoin signals, altcoin signals"
+    />
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            min-height: 100vh;
-        }
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: #ffffff;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        min-height: 100vh;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        /* Header */
-        header {
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            border-bottom: 2px solid #00ff00;
-        }
+      /* Header */
+      header {
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        border-bottom: 2px solid #00ff00;
+      }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #4CAF50;
-            text-decoration: none;
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
-        }
+      .logo {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #4caf50;
+        text-decoration: none;
+        text-shadow: 0 0 10px rgba(76, 175, 80, 0.7);
+      }
 
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #4caf50;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        color: #4caf50;
+        text-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        color: #ffffff;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: #4caf50;
+        color: #000000;
+        font-weight: 700;
+        border: 2px solid #4caf50;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
+        background: #388e3c;
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #4caf50;
+        border: 2px solid #4caf50;
+      }
+
+      .btn-secondary:hover {
+        background: #4caf50;
+        color: #000000;
+        transform: translateY(-2px);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background: #111111;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: #4caf50;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: #1a1a1a;
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid #333;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #4caf50;
+        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: #4caf50;
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #ffffff;
+      }
+
+      .feature-card p {
+        color: #cccccc;
+        line-height: 1.6;
+      }
+
+      /* App Showcase Section */
+      .app-showcase {
+        padding: 80px 0;
+        background: #111111;
+      }
+
+      .showcase-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .image-display {
+        position: relative;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .image-container {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 2px solid #333;
+        background: #1a1a1a;
+      }
+
+      .showcase-description {
+        text-align: left;
+        color: white;
+      }
+
+      .description-content h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #4caf50;
+        margin-bottom: 1rem;
+      }
+
+      .description-content p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #cccccc;
+        margin-bottom: 1.5rem;
+      }
+
+      .description-content ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .description-content li {
+        padding: 0.5rem 0;
+        color: #ffffff;
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .description-content li:before {
+        content: '✓';
+        color: #4caf50;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Stats Section */
+      .stats {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        color: white;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+        background: #1a1a1a;
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid #333;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        color: #4caf50;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        color: #ffffff;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 80px 0;
+        background: #111111;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #4caf50;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        color: #ffffff;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-info {
+        margin-top: 2rem;
+        padding: 2rem;
+        background: #1a1a1a;
+        border-radius: 15px;
+        border: 1px solid #333;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-info h3 {
+        color: #4caf50;
+        margin-bottom: 1rem;
+      }
+
+      .contact-info a {
+        color: #4caf50;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+
+      /* Footer */
+      footer {
+        background: #000000;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+        border-top: 2px solid #00ff00;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #4CAF50;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+          display: none;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #4CAF50;
-            text-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+          font-size: 2.5rem;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            color: #ffffff;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+          font-size: 1.1rem;
         }
 
         .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+          flex-direction: column;
+          align-items: center;
         }
 
         .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: #4CAF50;
-            color: #000000;
-            font-weight: 700;
-            border: 2px solid #4CAF50;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.4);
-            background: #388E3C;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #4CAF50;
-            border: 2px solid #4CAF50;
-        }
-
-        .btn-secondary:hover {
-            background: #4CAF50;
-            color: #000000;
-            transform: translateY(-2px);
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-            background: #111111;
+          width: 100%;
+          max-width: 300px;
         }
 
         .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: #4CAF50;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid #333;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: #4CAF50;
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: #4CAF50;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .feature-card p {
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        /* App Showcase Section */
-        .app-showcase {
-            padding: 80px 0;
-            background: #111111;
-        }
-
-        .showcase-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .image-display {
-            position: relative;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .image-container {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 2px solid #333;
-            background: #1a1a1a;
-        }
-
-        .showcase-description {
-            text-align: left;
-            color: white;
-        }
-
-
-
-        .description-content h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #4CAF50;
-            margin-bottom: 1rem;
-        }
-
-        .description-content p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #cccccc;
-            margin-bottom: 1.5rem;
-        }
-
-        .description-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .description-content li {
-            padding: 0.5rem 0;
-            color: #ffffff;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .description-content li:before {
-            content: "✓";
-            color: #4CAF50;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Stats Section */
-        .stats {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-            color: white;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid #333;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: #4CAF50;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: #ffffff;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 80px 0;
-            background: #111111;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #4CAF50;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-info {
-            margin-top: 2rem;
-            padding: 2rem;
-            background: #1a1a1a;
-            border-radius: 15px;
-            border: 1px solid #333;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .contact-info h3 {
-            color: #4CAF50;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        footer {
-            background: #000000;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 2px solid #00ff00;
+          font-size: 2rem;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+          flex-direction: column;
+          text-align: center;
         }
 
-
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .showcase-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .image-slider {
-                max-width: 100%;
-            }
-
-            .slide img {
-                height: 500px;
-                object-fit: contain;
-            }
-
-            .showcase-description {
-                text-align: center;
-            }
-
-            .contact-info {
-                margin: 2rem 1rem;
-                padding: 1.5rem;
-            }
+        .features-grid {
+          grid-template-columns: 1fr;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .showcase-container {
+          grid-template-columns: 1fr;
+          gap: 2rem;
         }
 
-        .animate-fade-in {
-            animation: fadeInUp 0.6s ease-out;
+        .image-slider {
+          max-width: 100%;
         }
+
+        .slide img {
+          height: 500px;
+          object-fit: contain;
+        }
+
+        .showcase-description {
+          text-align: center;
+        }
+
+        .contact-info {
+          margin: 2rem 1rem;
+          padding: 1.5rem;
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      /* Team Section */
+      .team {
+        padding: 80px 0;
+        background: #111111;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .team-member {
+        background: #1a1a1a;
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid #333;
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .team-member:hover {
+        transform: translateY(-5px);
+        border-color: #4caf50;
+        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+      }
+
+      .member-photo {
+        margin-bottom: 1.5rem;
+      }
+
+      .member-photo img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #4caf50;
+      }
+
+      .team-member h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #ffffff;
+      }
+
+      .member-role {
+        color: #4caf50;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .member-description {
+        color: #cccccc;
+        line-height: 1.6;
+      }
+
+      /* App Mockup */
+      .app-mockup {
+        max-width: 300px;
+        margin: 0 auto;
+        background: #1a1a1a;
+        border-radius: 20px;
+        padding: 20px;
+        border: 2px solid #4caf50;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      }
+
+      .app-mockup img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+      }
+
+      .download-buttons {
+        margin-top: 2rem;
+      }
+
+      .download-btn {
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+
+      .download-btn:hover {
+        transform: scale(1.05);
+      }
+
+      .download-btn img {
+        height: 60px;
+        width: auto;
+      }
+
+      /* Solutions Section */
+      .solutions {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+      }
+
+      .solutions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .solution-card {
+        background: #1a1a1a;
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid #333;
+        transition: transform 0.3s ease;
+      }
+
+      .solution-card:hover {
+        transform: translateY(-5px);
+        border-color: #4caf50;
+        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.2);
+      }
+
+      .solution-icon {
+        font-size: 3rem;
+        color: #4caf50;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .solution-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        text-align: center;
+      }
+
+      .solution-card p {
+        color: #cccccc;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .solution-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .solution-card li {
+        padding: 0.5rem 0;
+        color: #ffffff;
+        position: relative;
+        padding-left: 1.5rem;
+      }
+
+      .solution-card li:before {
+        content: '✓';
+        color: #4caf50;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Header -->
     <header>
-        <nav class="container">
-            <a href="#" class="logo">Vens</a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#app-showcase">Platform</a></li>
-                <li><a href="#stats">Stats</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+      <nav class="container">
+        <a href="#" class="logo">Vens</a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#app-showcase">Application</a></li>
+          <li><a href="#solutions">Solutions</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#stats">Stats</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <h1 class="animate-fade-in">Vens Crypto Signals</h1>
-            <p class="animate-fade-in">Get real-time crypto signals and instant alerts for profitable trading decisions. Stay ahead of the market with our advanced signal detection system.</p>
-            <div class="cta-buttons animate-fade-in">
-                <a href="#contact" class="btn btn-primary">Get Started</a>
-                <a href="#features" class="btn btn-secondary">Learn More</a>
-            </div>
+      <div class="container">
+        <h1 class="animate-fade-in">Vens Crypto Signals</h1>
+        <p class="animate-fade-in">
+          Get real-time crypto signals and instant alerts for profitable trading
+          decisions. Stay ahead of the market with our advanced signal detection
+          system.
+        </p>
+        <div class="cta-buttons animate-fade-in">
+          <a href="#contact" class="btn btn-primary">Get Started</a>
+          <a href="#features" class="btn btn-secondary">Learn More</a>
         </div>
+      </div>
     </section>
 
     <!-- Features Section -->
     <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Vens?</h2>
-            <div class="features-grid">
-                <div class="feature-card animate-fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>Real-Time Alerts</h3>
-                    <p>Get instant notifications when significant price movements are detected across multiple cryptocurrencies.</p>
-                </div>
-                <div class="feature-card animate-fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Advanced Analytics</h3>
-                    <p>Comprehensive market analysis with technical indicators, volume analysis, and trend predictions.</p>
-                </div>
-                <div class="feature-card animate-fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Mobile Notifications</h3>
-                    <p>Receive push notifications on your mobile device for critical market movements and trading opportunities.</p>
-                </div>
-                <div class="feature-card animate-fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Risk Management</h3>
-                    <p>Advanced risk assessment tools and stop-loss recommendations to protect your investments.</p>
-                </div>
-                <div class="feature-card animate-fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Community Insights</h3>
-                    <p>Join our community of traders and share insights, strategies, and market analysis.</p>
-                </div>
-                <div class="feature-card animate-fade-in">
-                    <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI-Powered</h3>
-                    <p>Machine learning algorithms that continuously improve signal accuracy and market prediction.</p>
-                </div>
+      <div class="container">
+        <h2 class="section-title">Why Choose Vens?</h2>
+        <div class="features-grid">
+          <div class="feature-card animate-fade-in">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
             </div>
+            <h3>Real-Time Alerts</h3>
+            <p>
+              Get instant notifications when significant price movements are
+              detected across multiple cryptocurrencies.
+            </p>
+          </div>
+          <div class="feature-card animate-fade-in">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Advanced Analytics</h3>
+            <p>
+              Comprehensive market analysis with technical indicators, volume
+              analysis, and trend predictions.
+            </p>
+          </div>
+          <div class="feature-card animate-fade-in">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobile Notifications</h3>
+            <p>
+              Receive push notifications on your mobile device for critical
+              market movements and trading opportunities.
+            </p>
+          </div>
+          <div class="feature-card animate-fade-in">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Risk Management</h3>
+            <p>
+              Advanced risk assessment tools and stop-loss recommendations to
+              protect your investments.
+            </p>
+          </div>
+          <div class="feature-card animate-fade-in">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3>Community Insights</h3>
+            <p>
+              Join our community of traders and share insights, strategies, and
+              market analysis.
+            </p>
+          </div>
+          <div class="feature-card animate-fade-in">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3>AI-Powered</h3>
+            <p>
+              Machine learning algorithms that continuously improve signal
+              accuracy and market prediction.
+            </p>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team">
+      <div class="container">
+        <h2 class="section-title">Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member animate-fade-in">
+            <div class="member-photo">
+              <img
+                src="https://storage.googleapis.com/cekolabs-web/corazon.jpeg"
+                alt="Ömer Faruk Çetiner"
+              />
+            </div>
+            <h3>Ömer Faruk Çetiner</h3>
+            <p class="member-role">CEO & Co-Founder</p>
+            <p class="member-description">
+              Visionary leader with extensive experience in cryptocurrency
+              markets and blockchain technology. Leads strategic direction and
+              product development.
+            </p>
+          </div>
+          <div class="team-member animate-fade-in">
+            <div class="member-photo">
+              <img
+                src="https://storage.googleapis.com/cekolabs-web/monvance.jpeg"
+                alt="Ömer Faruk Koca"
+              />
+            </div>
+            <h3>Ömer Faruk Koca</h3>
+            <p class="member-role">CTO & Co-Founder</p>
+            <p class="member-description">
+              Technical architect responsible for building robust trading
+              algorithms and ensuring platform scalability and security.
+            </p>
+          </div>
+          <div class="team-member animate-fade-in">
+            <div class="member-photo">
+              <img
+                src="https://storage.googleapis.com/cekolabs-web/eren.jpeg"
+                alt="Eren Yörük"
+              />
+            </div>
+            <h3>Eren Yörük</h3>
+            <p class="member-role">Developer</p>
+            <p class="member-description">
+              Experienced software developer specializing in blockchain
+              technology and cryptocurrency applications. Builds robust trading
+              platforms and develops innovative solutions for the crypto market.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- App Showcase Section -->
     <section id="app-showcase" class="app-showcase">
-        <div class="container">
-            <h2 class="section-title animate-fade-in">Vens App in Action</h2>
-            <div class="showcase-container animate-fade-in">
-                <div class="image-display">
-                    <div class="image-container">
-                        <img src="/assets/vens1.jpeg" alt="Vens Dashboard" style="width: 100%; height: 700px; object-fit: contain; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
-                    </div>
-                </div>
-                <div class="showcase-description">
-                    <h3>Vens Dashboard</h3>
-                    <p>Clean and intuitive dashboard showing real-time market data, signal alerts, and portfolio performance. Monitor your crypto investments with advanced analytics and instant notifications.</p>
-                    <ul>
-                        <li>Real-time price tracking</li>
-                        <li>Signal alerts and notifications</li>
-                        <li>Portfolio performance metrics</li>
-                        <li>Market trend analysis</li>
-                        <li>Advanced charting tools</li>
-                        <li>Mobile-optimized design</li>
-                    </ul>
-                </div>
+      <div class="container">
+        <h2 class="section-title animate-fade-in">Vens Application</h2>
+        <div class="showcase-container animate-fade-in">
+          <div class="image-display">
+            <div class="app-mockup">
+              <img
+                src="https://storage.googleapis.com/cekolabs-web/vens1.webp"
+                alt="Vens App Screen"
+              />
             </div>
+          </div>
+          <div class="showcase-description">
+            <h3>Download Vens App</h3>
+            <p>
+              Experience the power of Vens on your mobile device. Get real-time
+              crypto signals, instant notifications, and advanced trading tools
+              right at your fingertips.
+            </p>
+            <ul>
+              <li>Real-time price tracking</li>
+              <li>Signal alerts and notifications</li>
+              <li>Portfolio performance metrics</li>
+              <li>Market trend analysis</li>
+              <li>Advanced charting tools</li>
+              <li>Mobile-optimized design</li>
+            </ul>
+            <div class="download-buttons">
+              <a href="#" class="download-btn google-play">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                  alt="Get it on Google Play"
+                />
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions">
+      <div class="container">
+        <h2 class="section-title">Our Solutions</h2>
+        <div class="solutions-grid">
+          <div class="solution-card animate-fade-in">
+            <div class="solution-icon">
+              <i class="fas fa-signal"></i>
+            </div>
+            <h3>Crypto Signal Acquisition</h3>
+            <p>
+              Don't miss market opportunities with real-time cryptocurrency
+              signals. Identify the most profitable entry and exit points thanks
+              to our advanced algorithms.
+            </p>
+            <ul>
+              <li>Instant signal notifications</li>
+              <li>High accuracy rate</li>
+              <li>Risk management recommendations</li>
+              <li>Multi-cryptocurrency support</li>
+            </ul>
+          </div>
+          <div class="solution-card animate-fade-in">
+            <div class="solution-icon">
+              <i class="fas fa-sync-alt"></i>
+            </div>
+            <h3>Automatic Bulk Tracking</h3>
+            <p>
+              Track hundreds of cryptocurrencies simultaneously. Monitor your
+              portfolio continuously and capture opportunities with our
+              automatic system.
+            </p>
+            <ul>
+              <li>Bulk portfolio tracking</li>
+              <li>Automatic alarm system</li>
+              <li>Performance analysis</li>
+              <li>Detailed reporting</li>
+            </ul>
+          </div>
+          <div class="solution-card animate-fade-in">
+            <div class="solution-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3>Live Chat for Community</h3>
+            <p>
+              Connect with experienced traders, share your strategies and
+              exchange information about the market. Our community welcomes
+              everyone from beginner to advanced level.
+            </p>
+            <ul>
+              <li>Live chat rooms</li>
+              <li>Expert trader support</li>
+              <li>Strategy sharing</li>
+              <li>Eğitim içerikleri</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Stats Section -->
     <section id="stats" class="stats">
-        <div class="container">
-            <h2 class="section-title" style="color: #4CAF50;">Platform Statistics</h2>
-            <div class="stats-grid">
-               
-                <div class="stat-item animate-fade-in">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">Signal Accuracy</div>
-                </div>
-                <div class="stat-item animate-fade-in">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Market Monitoring</div>
-                </div>
-                <div class="stat-item animate-fade-in">
-                    <div class="stat-number">600+</div>
-                    <div class="stat-label">Cryptocurrencies</div>
-                </div>
-            </div>
+      <div class="container">
+        <h2 class="section-title" style="color: #4caf50">
+          Platform Statistics
+        </h2>
+        <div class="stats-grid">
+          <div class="stat-item animate-fade-in">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">Signal Accuracy</div>
+          </div>
+          <div class="stat-item animate-fade-in">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Market Monitoring</div>
+          </div>
+          <div class="stat-item animate-fade-in">
+            <div class="stat-number">600+</div>
+            <div class="stat-label">Cryptocurrencies</div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- CTA Section -->
     <section id="contact" class="cta-section">
-        <div class="container">
-            <h2>Ready to Start Trading Smarter?</h2>
-            <p>Join thousands of traders who are already using Vens to make informed trading decisions and maximize their profits.</p>
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">Start Free Trial</a>
-            </div>
-            <div class="contact-info">
-                <h3>Need Help?</h3>
-                <p>Contact our support team at <a href="mailto:support@cekolabs.com">support@cekolabs.com</a></p>
-            </div>
+      <div class="container">
+        <h2>Ready to Start Trading Smarter?</h2>
+        <p>
+          Join thousands of traders who are already using Vens to make informed
+          trading decisions and maximize their profits.
+        </p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary">Start Free Trial</a>
         </div>
+        <div class="contact-info">
+          <h3>Need Help?</h3>
+          <p>
+            Contact our support team at
+            <a href="mailto:support@cekolabs.com">support@cekolabs.com</a>
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <h3>Vens</h3>
-                    <p>Advanced crypto signals and trading alerts platform</p>
-                </div>
-
-            </div>
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(0,255,0,0.2);">
-                <p>&copy; 2024 Vens. All rights reserved.</p>
-            </div>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <h3>Vens</h3>
+            <p>Advanced crypto signals and trading alerts platform</p>
+          </div>
         </div>
+        <div
+          style="
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+          "
+        >
+          <p>&copy; 2024 Vens. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
     <!-- Smooth Scrolling Script -->
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
             });
+          }
         });
+      });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      };
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all elements with animate-fade-in class
-        document.querySelectorAll('.animate-fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(el);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
         });
+      }, observerOptions);
 
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(0, 0, 0, 0.98)';
-            } else {
-                header.style.background = 'rgba(0, 0, 0, 0.95)';
-            }
-        });
+      // Observe all elements with animate-fade-in class
+      document.querySelectorAll('.animate-fade-in').forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+      });
 
-
+      // Header background on scroll
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+          header.style.background = 'rgba(0, 0, 0, 0.98)';
+        } else {
+          header.style.background = 'rgba(0, 0, 0, 0.95)';
+        }
+      });
     </script>
-</body>
-</html> 
+  </body>
+</html>
