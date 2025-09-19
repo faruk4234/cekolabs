@@ -527,7 +527,8 @@
 
       /* App Mockup */
       .app-mockup {
-        max-width: 300px;
+        max-width: 400px;
+        min-width: 400px;
         margin: 0 auto;
         background: #1a1a1a;
         border-radius: 20px;
@@ -540,6 +541,60 @@
         width: 100%;
         height: auto;
         border-radius: 15px;
+      }
+
+      /* Slider Controls */
+      .slider-controls {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+        padding: 0 8px;
+        pointer-events: none;
+      }
+
+      .slider-btn {
+        pointer-events: auto;
+        background: rgba(0, 0, 0, 0.6);
+        color: #4caf50;
+        border: 1px solid #4caf50;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+
+      .slider-btn:hover {
+        background: rgba(76, 175, 80, 0.2);
+      }
+
+      .slider-dots {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .slider-dots .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #333;
+        border: 1px solid #4caf50;
+        opacity: 0.7;
+      }
+
+      .slider-dots .dot.active {
+        background: #4caf50;
+        opacity: 1;
       }
 
       .download-buttons {
@@ -746,11 +801,7 @@
             <h3>Ömer Faruk Çetiner</h3>
             <p class="member-role">CEO & Co-Founder</p>
             <p class="member-description">
-              Founder and all-around joker of the team — I do backend and DevOps
-              as my main gig, but I wear every hat from mobile to web to
-              marketing. I'm the team player who brings ideas, innovation, and
-              jumps in wherever needed to keep the ship sailing. Basically, the
-              Swiss Army knife of my own startup.
+                Founder and all-around joker of the team — I do backend and DevOps as my main gig, but I wear every hat from mobile to web to marketing. I'm the team player who brings ideas, innovation, and jumps in wherever needed to keep the ship sailing. Basically, the Swiss Army knife of my own startup.
             </p>
           </div>
           <div class="team-member animate-fade-in">
@@ -763,10 +814,7 @@
             <h3>Ömer Faruk Koca</h3>
             <p class="member-role">CTO & Co-Founder</p>
             <p class="member-description">
-              The team's go-to mobile and web developer — but also the visionary
-              mind everyone trusts when it comes to ideas and architecture.
-              Master of brainstorming and problem-solving, never afraid to
-              rebuild from scratch if needed. Basically, the soul of the team
+                The team's go-to mobile and web developer — but also the visionary mind everyone trusts when it comes to ideas and architecture. Master of brainstorming and problem-solving, never afraid to rebuild from scratch if needed. Basically, the soul of the team
             </p>
           </div>
           <div class="team-member animate-fade-in">
@@ -779,10 +827,7 @@
             <h3>Eren Yörük</h3>
             <p class="member-role">Developer</p>
             <p class="member-description">
-              Our close friend and the new kid on the software block — we’ve got
-              their back 100%. We brainstorm together, build together, and grow
-              together. Basically, the teammate who reminds us why this journey
-              is fun in the first place.
+                Our close friend and the new kid on the software block — we’ve got their back 100%. We brainstorm together, build together, and grow together. Basically, the teammate who reminds us why this journey is fun in the first place.
             </p>
           </div>
         </div>
@@ -797,9 +842,15 @@
           <div class="image-display">
             <div class="app-mockup">
               <img
+                id="app-slider-image"
                 src="https://storage.googleapis.com/cekolabs-web/vens1.webp"
-                alt="Vens App Screen"
+                alt="Vens App Screen 1"
               />
+              <div class="slider-controls">
+                <button class="slider-btn prev" aria-label="Previous">‹</button>
+                <button class="slider-btn next" aria-label="Next">›</button>
+              </div>
+              <div class="slider-dots" aria-hidden="true"></div>
             </div>
           </div>
           <div class="showcase-description">
@@ -818,11 +869,7 @@
               <li>Mobile-optimized design</li>
             </ul>
             <div class="download-buttons">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.cekolabs.vens"
-                class="download-btn google-play"
-                target="_blank"
-              >
+              <a href="#" class="download-btn google-play">
                 <img
                   src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
                   alt="Get it on Google Play"
@@ -1007,6 +1054,94 @@
           header.style.background = 'rgba(0, 0, 0, 0.95)';
         }
       });
+
+      // Simple SRC-based slider for app mockup
+      (function initAppSlider() {
+        const imageEl = document.getElementById('app-slider-image');
+        if (!imageEl) return;
+
+        const total = 7;
+        let index = 1;
+        const base = 'https://storage.googleapis.com/cekolabs-web/vens';
+        
+        // Precompute URLs with fallback (first 3: .webp, others: .png; fallback swaps ext)
+        const urls = new Array(total);
+        function preferredExt(i) {
+          return i <= 3 ? '.webp' : '.png';
+        }
+        function altExt(i) {
+          return i <= 3 ? '.png' : '.webp';
+        }
+        for (let i = 1; i <= total; i++) {
+          const preferred = base + i + preferredExt(i);
+          urls[i - 1] = preferred;
+          const pre = new Image();
+          pre.onerror = () => {
+            urls[i - 1] = base + i + altExt(i);
+          };
+          pre.src = preferred;
+        }
+
+        const prevBtn = document.querySelector('.slider-btn.prev');
+        const nextBtn = document.querySelector('.slider-btn.next');
+        const dotsContainer = document.querySelector('.slider-dots');
+
+        const dots = [];
+        for (let i = 1; i <= total; i++) {
+          const d = document.createElement('span');
+          d.className = 'dot' + (i === index ? ' active' : '');
+          d.addEventListener('click', () => {
+            goTo(i);
+            resetAutoplay();
+          });
+          dots.push(d);
+          dotsContainer.appendChild(d);
+        }
+
+        function update() {
+          imageEl.src = urls[index - 1];
+          imageEl.alt = 'Vens App Screen ' + index;
+          dots.forEach((d, i) => {
+            if (i + 1 === index) d.classList.add('active');
+            else d.classList.remove('active');
+          });
+        }
+
+        function goTo(i) {
+          index = ((i - 1 + total) % total) + 1;
+          update();
+        }
+
+        function next() {
+          goTo(index + 1);
+        }
+
+        function prev() {
+          goTo(index - 1);
+        }
+
+        prevBtn && prevBtn.addEventListener('click', () => {
+          prev();
+          resetAutoplay();
+        });
+        nextBtn && nextBtn.addEventListener('click', () => {
+          next();
+          resetAutoplay();
+        });
+
+        let timer = null;
+        function startAutoplay() {
+          timer = setInterval(next, 4000);
+        }
+        function resetAutoplay() {
+          if (timer) clearInterval(timer);
+          startAutoplay();
+        }
+
+        // Initialize
+        update();
+        startAutoplay();
+      })();
     </script>
   </body>
 </html>
